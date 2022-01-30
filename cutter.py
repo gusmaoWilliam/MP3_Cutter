@@ -23,7 +23,7 @@ arq = ""
 for arquivo in os.listdir(pasta):
     if os.path.isfile(os.path.join(pasta, arquivo)):
         arq = pasta + "\\" + arquivo
-        if arq.endswith(".mp3"):
+        if arq.endswith(".mp3") or arq.endswith(".MP3"):
             print(f"Convertendo {arquivo}, Aguarde...")
             sound_file = AudioSegment.from_mp3(arq)
             new_file = sound_file[int(inicio)*1000:(int(inicio) + int(tamanho))*1000]
