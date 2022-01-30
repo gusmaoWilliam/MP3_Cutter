@@ -16,6 +16,7 @@ def createFolder(directory):
 
 pasta = input("Cole o diretorio das musicas aqui : ")
 tamanho = input("Digite o tamanho desejado das musicas em segundos: ")
+inicio = input("Digite o tempo inicial das musicas (Digite 0 para começar do inicio): ")
 new_folder = f"{pasta}\\Musicas_{tamanho}s"
 createFolder(new_folder)
 arq = ""
@@ -25,8 +26,8 @@ for arquivo in os.listdir(pasta):
         if arq.endswith(".mp3"):
             print(f"Convertendo {arquivo}, Aguarde...")
             sound_file = AudioSegment.from_mp3(arq)
-            new_file = sound_file[0:int(tamanho)*1000]
-            new_file.export(new_folder+"\\"+arquivo, format="mp3")
+            new_file = sound_file[int(inicio)*1000:(int(inicio) + int(tamanho))*1000]
+            new_file.export(new_folder+"\\"+arquivo[:-4]+" ("+tamanho+"s)"+".mp3", format="mp3")
         else:
             print(f"{arquivo} nao é uma musica!")
 print(f"Todas as musicas foram convertidas em: {new_folder}")
